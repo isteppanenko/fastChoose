@@ -1,13 +1,15 @@
 import time
 from selenium import webdriver
 from selenium.webdriver.common.by import By
-from selenium.webdriver.chrome.options import Options  # Використання ChromeOptions для Opera
+from selenium.webdriver.chrome.options import Options
+from selenium.webdriver.chrome.service import Service  # Для вказання шляху до драйвера
 
 def create_opera_driver():
     options = Options()
-    # Додаємо шлях до OperaDriver
+    # Вказуємо шлях до OperaDriver
     driver_path = r"C:\Users\istep\Downloads\operadriver_win64\operadriver.exe"
-    driver = webdriver.Chrome(executable_path=driver_path, options=options)  # Використовуємо ChromeDriver для Opera
+    service = Service(driver_path)  # Використовуємо Service для шляху до драйвера
+    driver = webdriver.Chrome(service=service, options=options)  # Передаємо Service у WebDriver
     return driver
 
 if __name__ == "__main__":
